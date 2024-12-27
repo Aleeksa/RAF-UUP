@@ -9,47 +9,52 @@ int fib(int n){
         return fib(n-1)+fib(n-2);
     }
 }
-int prost(int n){
+int jelprost(int n){
     if(n <= 1){
         return 0;
     }
-   for(int i = 2 ; i <= sqrt(n) ; i++){
+    for(int i = 2 ; i <= sqrt(n) ; i++){
         if(n % i == 0){
             return 0;
         }
-   }
-   return 1;
+    }
+    return 1;
 }
-double rek(int n, int i, int p , int t , int s , int prost){
-    printf("n = %d , i = %d , p = %d , t = %d , s = %d \n",n,i,p,t,s);
+int ispisprostih(int n){
+    int brojac = 0 , i = 2;
+    while(brojac < n){
+        if(jelprost(i)){
+            //printf("%4d",i);
+            brojac+=1;
+        }
+        i+=1;
+    }
+    
+    return i-1;
+}
+double rek(int n, int i){
+    //printf("n = %d , i = %d , fib(n) = %d , prosti = %d \n",n,i,fib(i),ispisprostih(i));
     if(n == i){
-        return sqrt(fib(n)/1);
+        return sqrt(1.0 * fib(n)/ispisprostih(n));
     }
     else{
-        s = t + p;
-        return sqrt(t/ + rek(n,i+1,t,s,s,prost));
+        return sqrt(1.0 * fib(i)/ispisprostih(i)+ rek(n,i+1));
     }
 }
-double iter(int n, int f){
-    double sum = 0;
+double iter(int n){
     int o = 0;
-    for(int i = 1 ; i <= n ; i++){
-        printf("n = %d , i = %d , fib(n) = %d , sum = %d \n",n,i,fib(n-o),sum);
-        sum = sqrt(1.0 * fib(n-o)+sum);
-        o++;
+    double sum = 0;
+    for(int i = 1; i <= n ; i++){
+        printf("i = %d , n = %d , sum = %lf , fib = %d , prost = %d \n",i,n,sum,fib(n-o),ispisprostih(n-o));
+        sum = sqrt(1.0 * fib(n-o)/ispisprostih(n-o)+sum);
+        o+=1;
     }
     return sum;
 }
 int main(){
-    int n , novoN , f , p;
-    scanf("%d",&n);
-
-    novoN = n + 1;
-
-    f = fib(novoN);
-    p = prost(n);
-    
-    printf("Rekurzivno   %lf \n",rek(novoN,1,1,1,0,p));
-    printf("Iterativno   %lf",iter(novoN, f));
+    int n;
+    scanf("%d", &n);
+    //printf("REK   %lf \n",rek(n+1,1));
+    printf("Iter   %lf",iter(n+1));
     return 0;
 }
