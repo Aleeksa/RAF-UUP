@@ -11,7 +11,7 @@ int fib(int n){
 }
 void gore(int a[][100], int n){
     for(int j = n-1 ; j >= 0 ; j--){
-        a[0][j] = fib(j+1) % 10; 
+        a[0][j] = fib(j+1) % 10;
     }
 }
 void sporedna(int a[][100], int n){
@@ -31,13 +31,15 @@ void dole(int a[][100], int n){
     }
 }
 void racun(int a[][100], int n){
-    for(int i = 1; i < n - 1 ; i++){
-        for(int j = 0 ; j < n ; j++){
-            if(i + j > n - 1){
-                a[i][j] = (int)pow(j,i) % 10;
-            }
-            if(i + j < n - 1){
-                a[i][j] = a[i][j+2] - a[i][j+1];
+    for(int i = 1; i <= n - 2 ; i++){
+        for(int j = 0 ; j <= n - 1 ; j++){
+           if(i + j > n - 1){
+            a[i][j] = (int)pow(j,i) % 10;
+           }
+        }
+        for(int j = n - 1 ; j >= 0 ; j--){
+            if(i+j < n - 1){
+                a[i][j] = abs(a[i][j+1] - a[i][j+2]) % 10;
             }
         }
     }
@@ -54,11 +56,12 @@ void ispis(int a[][100],int n){
 int main() {
     int n, a[100][100] = {0};
     scanf("%d",&n);
-    
+
     gore(a,n);
     sporedna(a,n);
-    dole(a, n);
     racun(a, n);
+    dole(a, n);
+
     ispis(a,n);
     return 0;
 }
