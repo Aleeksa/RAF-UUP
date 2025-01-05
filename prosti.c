@@ -19,6 +19,7 @@ int ispisprostih(int n){
         }
         i+=1;
     }
+    return i;
 }
 int main(){
     int n;
