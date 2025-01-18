@@ -15,6 +15,20 @@ void racun(int a[][100], int b[][100] , int n){
                 b[i][j] = a[i][j];
                 for(int k = 0 ; k < n ; k++){
                     for(int l = 0 ; l < n ; l++){
+                             if(k == n-1){
+                        if(a[i][j] > a[k][l]){
+                        int temp = a[i][j];
+                        a[i][j] = a[k][l];
+                        a[k][l] = temp;
+                            }
+                        }
+                        if(l == 0){
+                        if(a[i][j] > a[k][l]){
+                        int temp = a[i][j];
+                        a[i][j] = a[k][l];
+                        a[k][l] = temp;
+                            }
+                        }
                         if(k == 0){
                         if(a[i][j] < a[k][l]){
                         int temp = a[i][j];
@@ -30,39 +44,43 @@ void racun(int a[][100], int b[][100] , int n){
                             }
                         }
                     }
-                    for(int l = n-1 ; l >= 0 ; l--){
-                        if(k == n-1){
+                }
+            }
+            else if(i == 1 || j == 1|| i == n-2 || j == n-2){
+            b[i][j] = a[i][j];
+            for(int k = 1 ; k < n-1 ;k++){
+            for(int l = 1 ; l < n-1 ; l++){
+                    if(k == n-2){
                         if(a[i][j] < a[k][l]){
                         int temp = a[i][j];
                         a[i][j] = a[k][l];
                         a[k][l] = temp;
                             }
                         }
-                    }
-                }
-            }
-            else if(i == 1 || j == 1|| i == n-2 || j == n-2){
-            b[i][j] = a[i][j];
-            for(int k = 1 ; k < n-1 ;k++){
-                for(int l = 1 ; l < n-1 ; l++){
-                    if(k == 1){
-                    if(a[i][j] > a[k][l]){
-                    int temp = a[i][j];
-                    a[i][j] = a[k][l];
-                    a[k][l] = temp;
-                        }
-                    }
-                    if(l == n-2){
-                    if(a[i][j] > a[k][l]){
-                    int temp = a[i][j];
-                    a[i][j] = a[k][l];
-                    a[k][l] = temp;
+                        if(l == 1){
+                        if(a[i][j] < a[k][l]){
+                        int temp = a[i][j];
+                        a[i][j] = a[k][l];
+                        a[k][l] = temp;
                             }
                         }
-                    }
+                        if(k == 1){
+                        if(a[i][j] > a[k][l]){
+                        int temp = a[i][j];
+                        a[i][j] = a[k][l];
+                        a[k][l] = temp;
+                            }
+                        }
+                        if(l == n-2){
+                        if(a[i][j] > a[k][l]){
+                        int temp = a[i][j];
+                        a[i][j] = a[k][l];
+                        a[k][l] = temp;
+                            }
+                        }
 
-               }}
-            else{
+               }
+            }}else{
                 b[i][j] = a[n/2][n/2];
             }
         }
